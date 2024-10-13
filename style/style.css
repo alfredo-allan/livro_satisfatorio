@@ -1,0 +1,93 @@
+@font-face {
+  font-family: "SuperWildPersonalUse";
+  src: url("../fonts/SuperWildPersonalUse.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Sobrescreve a fonte padrão do Bootstrap */
+:root {
+  --bs-body-font-family: "SuperWildPersonalUse", sans-serif;
+  --bs-body-bg: transparent; /* Ou outra cor que você deseja, como 'none' */
+  --cor-rosa: #ff69b4;
+  --cor-roxo: #a64ca6;
+}
+
+body {
+  font-family: "SuperWildPersonalUse", sans-serif !important; /* Força a aplicação da fonte */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #000000 !important; /* Aplica o fundo preto */
+}
+
+.book-container {
+  width: 500px;
+  height: 600px;
+  perspective: 1000px;
+}
+
+.book-cover,
+.book-page {
+  width: 100%;
+  height: 100%;
+  border: 1px var(--cor-roxo);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  transition: transform 0.6s;
+}
+
+.book-cover {
+  background-color: var(--cor-rosa);
+}
+
+.book-page {
+  background-color: var(--cor-rosa);
+  transform: rotateY(180deg);
+}
+
+.book-container:hover .book-cover {
+  transform: rotateY(-180deg);
+}
+
+.book-container:hover .book-page {
+  transform: rotateY(0deg);
+}
+
+.btn-custon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* Deixa o botão redondo */
+  background-color: var(--cor-roxo); /* Aplica a cor de fundo roxa */
+  border: 2px solid var(--cor-rosa); /* Borda rosa suave */
+  color: white; /* Texto branco */
+  font-size: 14px; /* Tamanho do texto */
+  font-family: "SuperWildPersonalUse", sans-serif; /* Aplicar a fonte */
+  cursor: pointer;
+  transition: background-color 0.4s ease, transform 0.4s ease,
+    box-shadow 0.4s ease; /* Transições suaves */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra leve */
+}
+
+.btn-custon:hover {
+  background-color: #a64ca6d0; /* Muda para rosa no hover */
+  transform: scale(1.1); /* Leve aumento ao passar o mouse */
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Sombra mais intensa no hover */
+}
+
+.btn-custon:active {
+  transform: scale(1); /* Volta ao tamanho original no clique */
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); /* Sombra reduzida no clique */
+}
+
+.btn-custon:focus {
+  outline: none; /* Remove o outline padrão */
+  box-shadow: 0 0 10px black; /* Efeito de foco com sombra rosa */
+}
