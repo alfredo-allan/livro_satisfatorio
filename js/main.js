@@ -3,85 +3,91 @@ function goToNextPage() {
   window.location.href = "./pages/trocarbebe.html"; // Defina o caminho da próxima página
 }
 
-// Função para começar a arrastar no desktop
-function dragStart(event) {
-  event.dataTransfer.setData("text", event.target.id);
+// Função para detectar clique ou toque no baby-body
+document
+  .getElementById("baby-body")
+  .addEventListener("click", handleBabyBodyClick);
+document
+  .getElementById("baby-body")
+  .addEventListener("touchstart", handleBabyBodyClick);
+
+function handleBabyBodyClick(event) {
+  // Evita o comportamento padrão do toque
+  event.preventDefault();
+
+  // Adiciona uma animação de pulso quando o baby-body é clicado ou tocado
+  this.classList.add("pulsate");
+
+  // Remover a classe de animação após um tempo
+  setTimeout(() => {
+    this.classList.remove("pulsate");
+  }, 500);
+
+  // Checa se o bebê chorando foi clicado após o baby-body
+  document
+    .getElementById("bebe-chorando")
+    .addEventListener("click", handleBabyCryClick);
+  document
+    .getElementById("bebe-chorando")
+    .addEventListener("touchstart", handleBabyCryClick);
 }
 
-// Suporte ao toque para dispositivos móveis
+function handleBabyCryClick(event) {
+  event.preventDefault();
+
+  // Remover a imagem do bebê chorando
+  this.style.display = "none"; // Oculta o bebê chorando
+
+  // Trocar a imagem da roupa para a nova roupa 'bebe-body-azul.png'
+  var babyBody = document.getElementById("baby-body");
+  babyBody.src = "../img/bebe-body-azul.png"; // Troca a roupa
+
+  // Reposicionar a nova imagem no centro
+  babyBody.style.position = "absolute";
+  babyBody.style.marginTop = "0px";
+  babyBody.style.marginLeft = "-110px";
+  babyBody.style.width = "110px";
+}
+
+// Função para detectar clique ou toque na fralda
+document.getElementById("fralda").addEventListener("click", handleFraldaClick);
 document
-  .getElementById("baby-body")
-  .addEventListener("touchstart", function (event) {
-    event.preventDefault(); // Previne o comportamento padrão de abrir o menu da imagem
-    var touch = event.touches[0]; // Obtém a primeira interação do toque
-    this.style.position = "absolute";
-    this.style.left = touch.pageX - this.offsetWidth / 2 + "px";
-    this.style.top = touch.pageY - this.offsetHeight / 2 + "px";
-  });
+  .getElementById("fralda")
+  .addEventListener("touchstart", handleFraldaClick);
 
-document
-  .getElementById("baby-body")
-  .addEventListener("touchmove", function (event) {
-    event.preventDefault(); // Previne o comportamento padrão
-    var touch = event.touches[0]; // Obtém o movimento do toque
-    this.style.left = touch.pageX - this.offsetWidth / 2 + "px";
-    this.style.top = touch.pageY - this.offsetHeight / 2 + "px";
-  });
+function handleFraldaClick(event) {
+  event.preventDefault();
 
-document
-  .getElementById("baby-body")
-  .addEventListener("touchend", function (event) {
-    var bebeChorando = document.getElementById("bebe-chorando");
-    var touch = event.changedTouches[0];
+  // Adiciona uma animação de pulso quando a fralda é clicada ou tocada
+  this.classList.add("pulsate");
 
-    // Verifica se o toque está dentro da área do bebê chorando
-    var bebeChorandoRect = bebeChorando.getBoundingClientRect();
-    if (
-      touch.pageX >= bebeChorandoRect.left &&
-      touch.pageX <= bebeChorandoRect.right &&
-      touch.pageY >= bebeChorandoRect.top &&
-      touch.pageY <= bebeChorandoRect.bottom
-    ) {
-      // Remover a imagem do bebê chorando
-      bebeChorando.style.display = "none"; // Oculta o bebê chorando
+  // Remover a classe de animação após um tempo
+  setTimeout(() => {
+    this.classList.remove("pulsate");
+  }, 500);
 
-      // Trocar a imagem da roupa para a nova roupa 'bebe-body-azul.png'
-      var babyBody = document.getElementById("baby-body");
-      babyBody.src = "../img/bebe-body-azul.png"; // Troca a roupa
+  // Checa se o bebê chorando foi clicado após a fralda
+  document
+    .getElementById("bebe-chorando")
+    .addEventListener("click", handleFraldaCryClick);
+  document
+    .getElementById("bebe-chorando")
+    .addEventListener("touchstart", handleFraldaCryClick);
+}
 
-      // Reposicionar a nova imagem no centro
-      babyBody.style.position = "absolute";
-      babyBody.style.marginTop = "0px";
-      babyBody.style.marginLeft = "-110px";
-      babyBody.style.width = "110px";
-    }
-  });
+function handleFraldaCryClick(event) {
+  event.preventDefault();
 
-// Função de arrastar para desktop (mantém o arraste no desktop com drag-and-drop)
-document
-  .getElementById("bebe-chorando")
-  .addEventListener("dragover", function (event) {
-    event.preventDefault();
-  });
+  // Remover a imagem do bebê chorando
+  this.style.display = "none"; // Oculta o bebê chorando
 
-document
-  .getElementById("bebe-chorando")
-  .addEventListener("drop", function (event) {
-    event.preventDefault();
-    var data = event.dataTransfer.getData("text");
-    if (data === "baby-body") {
-      // Remover a imagem do bebê chorando
-      var bebeChorando = document.getElementById("bebe-chorando");
-      bebeChorando.style.display = "none"; // Oculta o bebê chorando
+  // Trocar a fralda pela imagem do bebê 'baby.png'
+  var babyBody = document.getElementById("baby-body");
+  babyBody.src = "../img/baby.png"; // Troca para a nova imagem
 
-      // Trocar a imagem da roupa para a nova roupa 'bebe-body-azul.png'
-      var babyBody = document.getElementById("baby-body");
-      babyBody.src = "../img/bebe-body-azul.png"; // Troca a roupa
-
-      // Reposicionar a nova imagem no centro
-      babyBody.style.position = "absolute";
-      babyBody.style.marginTop = "0px";
-      babyBody.style.marginLeft = "-110px";
-      babyBody.style.width = "110px";
-    }
-  });
+  // Reposicionar a nova imagem no centro
+  babyBody.style.position = "absolute";
+  babyBody.style.marginTop = "0px";
+  babyBody.style.marginLeft = "-110px";
+  babyBody.style.width = "110px";
+}

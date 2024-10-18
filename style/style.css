@@ -91,3 +91,20 @@ body {
   outline: none; /* Remove o outline padrão */
   box-shadow: 0 0 10px black; /* Efeito de foco com sombra rosa */
 }
+
+/* Animação de pulsação */
+.pulsate {
+  animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

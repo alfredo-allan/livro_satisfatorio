@@ -71,7 +71,7 @@
       /* Efeito de cintilação ao passar o mouse */
       #baby-body:hover {
         transform: scale(1.1); /* Leve aumento */
-        border-radius: 90%; /* Isso faz o elemento ser redondo */
+        border-radius: 10%; /* Isso faz o elemento ser redondo */
         box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Sombra no hover */
       }
 
@@ -98,11 +98,13 @@
           position: absolute;
           margin-top: -310px;
           margin-left: 260px;
+          width: 100px;
         }
         #fralda {
           position: absolute;
           margin-left: 250px;
           margin-top: -130px;
+          width: 100px;
         }
       }
     </style>
@@ -114,19 +116,19 @@
       <div class="book-page">
         <img
           src="../img/baby-chorando.png"
-          alt=""
+          alt="Bebê chorando"
           id="bebe-chorando"
           style="position: absolute"
         />
         <img
           src="../img/baby-body.png"
-          alt=""
+          alt="Roupinha do bebê"
           id="baby-body"
-          draggable="true"
-          ondragstart="dragStart(event)"
           style="position: absolute"
         />
-        <img src="../img/fralda.png" alt="" id="fralda" />
+        <img src="../img/fralda.png" alt="Fralda" id="fralda" />
+
+        <!-- Botão para continuar -->
         <button class="btn-custon" onclick="goToNextPage()">
           Click Para Continuar!
         </button>
@@ -140,4 +142,5 @@
     ></script>
     <script src="../js/main.js"></script>
   </body>
+  >
 </html>
